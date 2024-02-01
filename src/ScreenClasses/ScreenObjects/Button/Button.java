@@ -3,6 +3,7 @@ package ScreenClasses.ScreenObjects.Button;
 import LogicClasses.Shapes.AABB;
 import ScreenClasses.ScreenManager;
 import Utils.Color;
+import Utils.Font;
 import Utils.MH;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -19,7 +20,7 @@ public class Button extends AABB {
 
     public boolean render = true;
 
-    public Button(int x, int y, int w, int h, String text, ButtonAction action) {
+    public Button(String text, int x, int y, int w, int h, ButtonAction action) {
         super(x, y, w, h);
         this.p = ScreenManager.p;
         this.text = text;
@@ -56,7 +57,7 @@ public class Button extends AABB {
         p.rect(x, y, w, h);
 
         p.fill(255);
-        p.textSize(32);
+        p.textFont(Font.font[32]);
         p.textAlign(PConstants.LEFT, PConstants.TOP);
         p.text(text, x + w / 2 - p.textWidth(text) / 2, y + h / 2 - p.textAscent() / 2);
     }

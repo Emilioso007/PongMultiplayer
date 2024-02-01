@@ -14,6 +14,10 @@ public class ButtonHandler {
         buttons.add(button);
     }
 
+    public void addButton(String text, int x, int y, int w, int h, ButtonAction action) {
+        buttons.add(new Button(text, x, y, w, h, action));
+    }
+
     public void update() {
         for (Button button : buttons) {
             button.update();

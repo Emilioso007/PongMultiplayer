@@ -1,6 +1,6 @@
 
 import ScreenClasses.ScreenManager;
-import ScreenClasses.Screens.MainMenu;
+import ScreenClasses.Screens.MainMenuScreen;
 import Utils.Font;
 import Utils.KH;
 import Utils.MH;
@@ -23,7 +23,7 @@ public class App extends PApplet {
         MH.initialize(this);
         ScreenManager.initialize(this);
         Font.loadFonts();
-        ScreenManager.setScreen(new MainMenu());
+        ScreenManager.setScreen(new MainMenuScreen());
     }
 
     public void draw() {

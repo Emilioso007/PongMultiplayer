@@ -7,11 +7,15 @@ import java.util.HashMap;
 
 public class KH {
 
-    private static HashMap<String, Integer> keyMap = new HashMap<String, Integer>();
+    private static HashMap<String, Integer> keyMap = new HashMap<>();
+    private static HashMap<Integer, String> keyMap2 = new HashMap<>();
 
     private static int[] keys = new int[1023];
 
-    //states:
+    public static String lastKeyTyped = "";
+    public static String lastStringTyped = "";
+
+    // states:
     // 0 - up
     // 1 - down
     // 2 - released
@@ -106,9 +110,38 @@ public class KH {
             e.printStackTrace();
         }
 
+        for (String keyName : keyMap.keySet()) {
+            keyMap2.put(keyMap.get(keyName), keyName);
+        }
+
     }
 
     public static void update() {
+        
+        lastKeyTyped = "";
+
+        // set lastKeyTyped to keyTyped
+        for (int i = 0; i < keys.length; i++) {
+            if (keys[i] == 3) {
+                lastKeyTyped = keyMap2.get(i);
+
+            }
+        }
+        if (lastKeyTyped.equals("SPACE")) {
+            
+            lastKeyTyped = " ";
+        }
+
+        if(lastKeyTyped.equals("ENTER")) {
+            lastStringTyped = "";
+        } else if (lastKeyTyped.equals("BACKSPACE")) {
+            if (lastStringTyped.length() > 0) {
+                lastStringTyped = lastStringTyped.substring(0, lastStringTyped.length() - 1);
+            }
+        } else {
+            lastStringTyped += lastKeyTyped;
+        }
+
         for (int i = 0; i < keys.length; i++) {
             if (keys[i] == 2) {
                 keys[i] = 0;

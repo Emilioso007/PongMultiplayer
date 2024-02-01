@@ -31,6 +31,30 @@ public class AABB {
 
     public boolean intersects(Circle other) {
 
+        float distanceX = Math.abs(other.x - x - w / 2);
+        float distanceY = Math.abs(other.y - y - h / 2);
+
+        if (distanceX > (w / 2 + other.r)) {
+            return false;
+        }
+        if (distanceY > (h / 2 + other.r)) {
+            return false;
+        }
+
+        if (distanceX <= (w / 2)) {
+            return true;
+        }
+        if (distanceY <= (h / 2)) {
+            return true;
+        }
+
+        float cornerDistance_sq = (float) (Math.pow(distanceX - w / 2, 2) + Math.pow(distanceY - h / 2, 2));
+
+        return (cornerDistance_sq <= Math.pow(other.r, 2));
+    }
+
+    public boolean intersectsCenter(Circle other) {
+
         float distanceX = Math.abs(x - other.x);
         float distanceY = Math.abs(y - other.y);
 
