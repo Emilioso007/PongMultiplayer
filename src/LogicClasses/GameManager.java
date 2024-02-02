@@ -102,10 +102,13 @@ public class GameManager {
             System.out.println(data);
             if (data != null) {
                 String[] dataSplit = data.split(",");
-                paddle1.y = (int) Double.parseDouble(dataSplit[0]);
-                paddle2.y = (int) Double.parseDouble(dataSplit[1]);
-                ball.x = (int) Double.parseDouble(dataSplit[2]);
-                ball.y = (int) Double.parseDouble(dataSplit[3]);
+                try {
+                    paddle1.y = (int) Double.parseDouble(dataSplit[0]);
+                    paddle2.y = (int) Double.parseDouble(dataSplit[1]);
+                    ball.x = (int) Double.parseDouble(dataSplit[2]);
+                    ball.y = (int) Double.parseDouble(dataSplit[3]);
+                } catch (Exception e) {
+                }
             }
 
         }
