@@ -2,8 +2,8 @@
 import ScreenClasses.ScreenManager;
 import ScreenClasses.Screens.MainMenuScreen;
 import Utils.Font;
-import Utils.KH;
 import Utils.MH;
+import Utils.Keyboard.KH;
 import processing.core.*;
 import processing.event.MouseEvent;
 
@@ -14,7 +14,7 @@ public class App extends PApplet {
     }
 
     public void settings() {
-        size(800,600, P2D);
+        size(800, 600, P2D);
         smooth(8);
     }
 
@@ -24,6 +24,7 @@ public class App extends PApplet {
         ScreenManager.initialize(this);
         Font.loadFonts();
         ScreenManager.setScreen(new MainMenuScreen());
+        surface.setResizable(false);
     }
 
     public void draw() {
@@ -34,6 +35,8 @@ public class App extends PApplet {
         showFPS();
 
         KH.update();
+
+        System.out.println(KH.lastKeyPressed);
     }
 
     private void showFPS() {
@@ -45,6 +48,7 @@ public class App extends PApplet {
 
     public void keyPressed() {
         KH.setKey(keyCode, 3);
+        // System.out.println(keyCode);
     }
 
     public void keyReleased() {

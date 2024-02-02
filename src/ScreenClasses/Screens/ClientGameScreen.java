@@ -13,9 +13,9 @@ public class ClientGameScreen extends Screen {
 
     private GameManager gameManager;
 
-    public ClientGameScreen() {
+    public ClientGameScreen(String ip) {
         p = ScreenManager.p;
-        gameManager = new GameManager(false);
+        gameManager = new GameManager(false, ip);
 
     }
 
@@ -26,7 +26,7 @@ public class ClientGameScreen extends Screen {
     public void render() {
         p.background(42);
 
-        
+        //draw game objects
         p.fill(255);
         p.stroke(0);
         p.strokeWeight(1);
@@ -34,6 +34,13 @@ public class ClientGameScreen extends Screen {
         p.rect(gameManager.paddle1.x, gameManager.paddle1.y, gameManager.paddle1.w, gameManager.paddle1.h);
         p.rect(gameManager.paddle2.x, gameManager.paddle2.y, gameManager.paddle2.w, gameManager.paddle2.h);
 
+        //show scores
+        p.fill(255);
+        p.textFont(Font.font[32]);
+        p.textAlign(PConstants.CENTER, PConstants.CENTER);
+        p.text(gameManager.player1Score + "   |   " + gameManager.player2Score, p.width / 2, 50);
+
+        //show player status (server or client)
         p.fill(255);
         p.textFont(Font.font[32]);
         p.textAlign(PConstants.RIGHT, PConstants.TOP);

@@ -16,14 +16,15 @@ public class Button extends AABB {
 
     private Color idleColor, hoveColor, clickColor, currentColor;
 
-    public String text;
+    public String text, key;
 
     public boolean render = true;
 
-    public Button(String text, int x, int y, int w, int h, ButtonAction action) {
+    public Button(String text, String key, int x, int y, int w, int h, ButtonAction action) {
         super(x, y, w, h);
         this.p = ScreenManager.p;
         this.text = text;
+        this.key = key;
         this.action = action;
         idleColor = new Color(255, 0, 0);
         hoveColor = new Color(0, 0, 200);
