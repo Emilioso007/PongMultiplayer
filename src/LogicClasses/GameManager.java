@@ -33,7 +33,7 @@ public class GameManager {
         if (isServer) {
             server = new Server(p, 8888);
         } else if (!isServer) {
-            client = new Client(p, "INSERT IP HERE", 8888);
+            client = new Client(p, "ip goes here", 8888);
         }
 
         ball = new Ball(p.width / 2, p.height / 2, 10);
@@ -53,6 +53,12 @@ public class GameManager {
                 if (paddle2.intersects(ball)) {
                     ballAngle = PApplet.PI - ballAngle;
                 }
+
+                // bounce ball off walls. remeber radius
+                if (ball.y - ball.r < 0 || ball.y + ball.r > p.height) {
+                    ballAngle = -ballAngle;
+                }
+
             }
 
             // get client input
@@ -93,12 +99,13 @@ public class GameManager {
             }
 
             String data = client.readString();
+            System.out.println(data);
             if (data != null) {
                 String[] dataSplit = data.split(",");
-                paddle1.y = Integer.parseInt(dataSplit[0]);
-                paddle2.y = Integer.parseInt(dataSplit[1]);
-                ball.x = Integer.parseInt(dataSplit[2]);
-                ball.y = Integer.parseInt(dataSplit[3]);
+                paddle1.y = (int) Double.parseDouble(dataSplit[0]);
+                paddle2.y = (int) Double.parseDouble(dataSplit[1]);
+                ball.x = (int) Double.parseDouble(dataSplit[2]);
+                ball.y = (int) Double.parseDouble(dataSplit[3]);
             }
 
         }

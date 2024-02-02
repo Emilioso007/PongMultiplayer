@@ -3,7 +3,6 @@ package ScreenClasses.Screens;
 import ScreenClasses.Screen;
 import ScreenClasses.ScreenManager;
 import ScreenClasses.ScreenObjects.Button.ButtonHandler;
-import Utils.KH;
 import processing.core.PApplet;
 
 public class MainMenuScreen extends Screen {
