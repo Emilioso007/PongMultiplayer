@@ -90,12 +90,12 @@ public class GameManager {
             // get client input and move their paddle
             Client c = server.available();
             if (c != null) {
-                String data = c.readStringUntil('\n');
-                // System.out.println(data);
+                String data = c.readString();
+                System.out.println(data);
                 if (data != null) {
-                    if (data.equals("W")) {
+                    if (data.equals("W\n")) {
                         paddle2.y -= 5;
-                    } else if (data.equals("S")) {
+                    } else if (data.equals("S\n")) {
                         paddle2.y += 5;
                     }
                 }
@@ -120,7 +120,11 @@ public class GameManager {
         } else if (!isServer) {
 
             // send input to server
-            client.write(KH.lastKeyTyped + "\n");
+            if(KH.keyDown("W")){
+                client.write("W");
+            } else if(KH.keyDown("S")){
+                client.write("S");
+            }
 
             // get server data and update gamestate
             String data = client.readStringUntil('\n');
